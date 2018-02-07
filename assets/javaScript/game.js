@@ -14,7 +14,8 @@ var currentWord = selectWord()
 var maxGuesses = 7
 var guessLeft = maxGuesses
 console.log("Current Word=" + currentWord)
-// var blanks =[]
+var hiddenWord = []
+hint()
 
 
 //-------------------------------F-U-N-C-T-I-O-N-S------------------------------
@@ -25,13 +26,10 @@ function selectWord() {
     return wordArr[Math.floor(Math.random() * wordArr.length)]
 }
 
-
-//Loop that iterates through each letter of currentWord. 
-
-
-for (var i = 0; i < currentWord.length; i++) {
-    document.getElementById("word").innerHTML = document.getElementById("word").innerHTML + '_'
-}
+// old code, dont delete. 
+// for (var i = 0; i < currentWord.length; i++) {
+// document.getElementById("word").innerHTML = document.getElementById("word").innerHTML + '_ '
+// }
 
 
 function resetGame() {
@@ -40,7 +38,14 @@ function resetGame() {
     currentWord = selectWord()
 }
 
-
+//Loop that displays the first set of blanks after computer guessses initial word. 
+function hint() {
+    for (var i = 0; i < currentWord.length; i++) {
+        hiddenWord[i] = ("_")
+        console.log(hiddenWord)
+        document.getElementById("word").innerHTML = hiddenWord.join(" ")
+    }
+}
 
 //This function runs whenever the user presses a key. 
 document.onkeyup = function (event) {
@@ -50,21 +55,53 @@ document.onkeyup = function (event) {
     console.log("players choice is equal to:" + userGuess)
 
     guessed.push(userGuess)
-    console.log(guessed)
+    console.log("letters guessed:" + guessed)
 
     for (var i = 0; i < currentWord.length; i++) {
-        if (userGuess === currentWord[i]) {
-          
+        if (currentWord[i] === userGuess) {
+            hiddenWord[i] = userGuess
+            document.getElementById("word").innerHTML = hiddenWord
+        }
+
+
+
+
+
+
+
+        // // for (var i = 0; i < currentWord.length; i++) {
+        // if (currentWord[i] === userGuess) {
+
+        //     // hiddenword[i] = userGuess;
+
+        //     // remainingLetters--
+
+
 
     }
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //----------------------------------CORE LOGIC-------------------------------------
 
 
- // html for scores
+
 
 
 
